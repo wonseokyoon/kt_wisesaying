@@ -3,18 +3,17 @@ import domain.wisesaying.controller.WiseSayingController
 import domain.wisesaying.system.SystemController
 
 class App {
-    fun run(){
-
+    fun run() {
         val wiseSayingController = WiseSayingController()
         val systemController = SystemController()
 
         println("== 명언 앱 ==")
-        while(true) {
-            print("명령: ")
-            val input= readlnOrNull() ?: ""
+        while (true) {
+            print("명령) ")
+            val input = readlnOrNull() ?: ""
 
             val rq = Request(input)
-            when(rq.actionName){
+            when (rq.actionName) {
                 "종료" -> {
                     systemController.exit()
                     break
@@ -26,8 +25,8 @@ class App {
                 else -> {
                     println("알 수 없는 명령입니다.")
                 }
-
             }
         }
     }
+
 }

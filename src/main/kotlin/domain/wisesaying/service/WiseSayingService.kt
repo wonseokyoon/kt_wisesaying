@@ -1,31 +1,29 @@
 package domain.wisesaying.service
 
-import domain.wisesaying.` repository`.WiseSayingRespository
+import domain.wisesaying.` repository`.WiseSayingRepository
 import domain.wisesaying.entity.WiseSaying
 
 class WiseSayingService {
 
-    val wiseSayingRespository=WiseSayingRespository()
+    private val wiseSayingRepository = WiseSayingRepository()
 
-    fun write(saying: String,author: String):WiseSaying {
-        return wiseSayingRespository.save(WiseSaying(saying = saying,author = author))
+    fun write(saying: String, author: String): WiseSaying {
+        return wiseSayingRepository.save(WiseSaying(saying = saying, author = author))
     }
 
     fun getItems(): List<WiseSaying> {
-        return wiseSayingRespository.findAll()
+        return wiseSayingRepository.findAll()
     }
 
     fun delete(wiseSaying: WiseSaying) {
-        wiseSayingRespository.delete(wiseSaying)
+        wiseSayingRepository.delete(wiseSaying)
     }
 
     fun getItem(id: Int): WiseSaying? {
-        return wiseSayingRespository.findById(id)
+        return wiseSayingRepository.findById(id)
     }
 
-    fun modify(wiseSaying: WiseSaying, saying: String, author: String):WiseSaying {
-        return wiseSayingRespository.save(wiseSaying.copy(saying = saying,author = author))
+    fun modify(wiseSaying: WiseSaying, saying: String, author: String): WiseSaying {
+        return wiseSayingRepository.save(wiseSaying.copy(saying = saying, author = author))
     }
-
-
 }
