@@ -1,42 +1,30 @@
 package domain.wisesaying.service
 
+import domain.wisesaying.` repository`.WiseSayingRespository
 import domain.wisesaying.entity.WiseSaying
 
 class WiseSayingService {
-    var lastId: Int = 0
-    val wiseSayings = mutableListOf<WiseSaying>()
+
+    val wiseSayingRespository=WiseSayingRespository()
 
     fun write(saying: String,author: String):WiseSaying {
-        val id=++lastId
-        val new= WiseSaying(id,saying,author)
-        wiseSayings.add(new)
-
-        return new
+        return wiseSayingRespository.save(WiseSaying(saying = saying,author = author))
     }
 
     fun getItems(): List<WiseSaying> {
-        return wiseSayings.toList()
+        return wiseSayingRespository.findAll()
     }
 
     fun delete(wiseSaying: WiseSaying) {
-        wiseSayings.remove(wiseSaying)
+        wiseSayingRespository.delete(wiseSaying)
     }
 
     fun getItem(id: Int): WiseSaying? {
-        return wiseSayings.find { it.id == id }
+        return wiseSayingRespository.findById(id)
     }
 
-    fun modify(wiseSaying: WiseSaying, saying: String, author: String):WiseSaying? {
-        val index = wiseSayings.indexOfFirst{it.id == wiseSaying.id}
-
-        if(index == -1){
-            return null
-        }
-
-        val new = wiseSaying.copy(author=author, saying=saying)
-        wiseSayings[index] = new
-
-        return new
+    fun modify(wiseSaying: WiseSaying, saying: String, author: String):WiseSaying {
+        return wiseSayingRespository.save(wiseSaying.copy(saying = saying,author = author))
     }
 
 
