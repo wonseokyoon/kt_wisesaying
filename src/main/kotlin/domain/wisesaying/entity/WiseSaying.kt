@@ -1,9 +1,9 @@
 package domain.wisesaying.entity
 
 data class WiseSaying(
-    var id:Int,
-    var saying:String,
-    var author:String
+    val id:Int,
+    val saying:String,
+    val author:String
 ) {
 
 }
