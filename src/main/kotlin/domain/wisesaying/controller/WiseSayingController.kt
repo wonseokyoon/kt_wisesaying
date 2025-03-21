@@ -1,10 +1,10 @@
 package domain.wisesaying.controller
 
 import com.think.global.Request
-import domain.wisesaying.service.WiseSayingService
+import global.SingletonScope
 
 class WiseSayingController{
-    private val wiseSayingService = WiseSayingService()
+    private val wiseSayingService = SingletonScope.wiseSayingService
 
     fun write() {
         print("명언: ")
